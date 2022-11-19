@@ -22,6 +22,7 @@ import com.example.win17.repository.HowToRepository
 import com.example.win17.retrofit.AviatorApi
 import com.example.win17.viewmodel.HowToViewModel
 import com.example.win17.viewmodel.HowToViewModelFactory
+import com.onesignal.OneSignal
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
@@ -40,6 +41,10 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE)
+        OneSignal.initWithContext(requireContext())
+        OneSignal.setAppId("714b9f14-381d-4fc4-a93c-28d480557381")
         navigationController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
         val losingButton = requireActivity().findViewById<AppCompatImageView>(R.id.button_loosing)
         losingButton.setOnClickListener {
